@@ -1,4 +1,4 @@
-package Conexion.Modelos;
+package Dao;
 
 import Conexion.Conexion;
 import Modelo.MantenimientoEquipos;
