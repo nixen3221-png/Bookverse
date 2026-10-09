@@ -1,5 +1,4 @@
-package Vista;
-
+import Vista.Menu;
 import javax.swing.SwingUtilities;
 
 public class Main {
