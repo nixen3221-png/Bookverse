@@ -33,4 +33,6 @@ public class MantenimientoEquiposControlador {
     public boolean eliminarMantenimiento(int id) {
         return dao.eliminarMantenimiento(id);
     }
+
+
 }

@@ -3,6 +3,7 @@ package Vista;
 import Controlador.MantenimientoEquiposControlador;
 import Modelo.MantenimientoEquipos;
 import java.awt.*;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -55,9 +56,13 @@ public class MantenimientoVista extends JPanel {
         JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 0));
         panelBotones.setBackground(Color.WHITE);
         JButton btnRegistrar = new JButton("Registrar");
+        JButton btnActualizar = new JButton("Actualizar");
+        JButton btnEliminar = new JButton("Eliminar");
         JButton btnLimpiar = new JButton("Limpiar");
 
         panelBotones.add(btnRegistrar);
+        panelBotones.add(btnActualizar);
+        panelBotones.add(btnEliminar);
         panelBotones.add(btnLimpiar);
 
         gbc.gridx = 1; gbc.gridy = 5; gbc.fill = GridBagConstraints.NONE; form.add(panelBotones, gbc);
@@ -82,6 +87,47 @@ public class MantenimientoVista extends JPanel {
                 JOptionPane.showMessageDialog(this, "El ID del equipo debe ser numerico.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
+
+        /* btnActualizar.addActionListener(e -> {
+            if (txtIdOculto.getText().isEmpty()) return;
+            try {
+                int id = Integer.parseInt(txtIdOculto.getText());
+                BigDecimal precio = new BigDecimal(txtPrecio.getText().trim());
+                int stock = Integer.parseInt(txtStock.getText().trim());
+                boolean ok = mantController.actualizarEstadoSoftware(id, 0, "", "", "", txtEstadoSoftware.getText().trim());
+                if (ok) {
+                    JOptionPane.showMessageDialog(this, "Mantenimiento actualizado con exito.");
+                    limpiar();
+                    cargarDatos();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error al actualizar el mantenimiento.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Precio y stock deben ser numericos validos.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }); */
+
+        btnEliminar.addActionListener(e -> {
+            if (txtIdOculto.getText().isEmpty()) return;
+            int id = Integer.parseInt(txtIdOculto.getText());
+            int confirm = JOptionPane.showConfirmDialog(this, "Desea eliminar este mantenimiento?", "Confirmar", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                boolean ok = mantController.eliminarMantenimiento(id);
+                if (ok) {
+                    JOptionPane.showMessageDialog(this, "Mantenimiento eliminado.");
+                    limpiar();
+                    cargarDatos();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error al eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        btnLimpiar.addActionListener(e -> limpiar());
+
+        add(form, BorderLayout.NORTH);
+        add(scroll, BorderLayout.CENTER);
+        cargarDatos();
 
         btnLimpiar.addActionListener(e -> limpiar());
 
