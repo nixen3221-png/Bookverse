@@ -14,11 +14,17 @@ public class Menu extends JFrame {
         panelPrincipal.setBackground(new Color(245, 245, 245));
 
         JTabbedPane pestanas = new JTabbedPane();
+        MantenimientoVista mantenimientoVista = new MantenimientoVista();
         pestanas.addTab("Equipos de Oficina", new EquiposVista());
-        pestanas.addTab("Mantenimiento", new MantenimientoVista());
+        pestanas.addTab("Mantenimiento", mantenimientoVista);
         pestanas.addTab("Libros", new LibrosVista());
         pestanas.addTab("Proveedores", new ProveedoresVista());
         pestanas.addTab("Pedidos", new PedidosVista());
+        pestanas.addChangeListener(e -> {
+            if (pestanas.getSelectedComponent() == mantenimientoVista) {
+                mantenimientoVista.actualizarEquipos();
+            }
+        });
 
         panelPrincipal.add(pestanas, BorderLayout.CENTER);
         add(panelPrincipal, BorderLayout.CENTER);

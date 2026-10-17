@@ -1,5 +1,10 @@
 {
     "chat.tools.terminal.autoApprove": {
         "javac": true
-    }
+    },
+    "java.project.referencedLibraries": [
+        "Lib/mysql-connector-j-8.3.0.jar"
+    ],
+    "java.server.launchMode": "Standard",
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx8G -Xms100m -Xlog:disable"
 }

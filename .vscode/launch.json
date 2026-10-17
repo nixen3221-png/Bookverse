@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Bookverse",
+            "request": "launch",
+            "mainClass": "Main",
+            "classPaths": [
+                "$Auto",
+                "${workspaceFolder}/Lib/mysql-connector-j-8.3.0.jar"
+            ]
+        }
+    ]
+}
